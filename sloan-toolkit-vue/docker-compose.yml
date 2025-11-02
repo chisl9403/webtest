@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # 完整应用服务（前端 + 后端）
+  sloan-toolkit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sloan-toolkit
+    ports:
+      - "5000:5000"   # 后端 Flask API
+      - "3000:3000"   # 前端 Vite 开发服务器（如需开发模式）
+    environment:
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # 开发模式：挂载代码以支持热重载
+      - ./backend:/app/backend
+      - ./server.py:/app/server.py
+      - ./config.json:/app/config.json
+      - ./testlog:/app/testlog
+    restart: unless-stopped
+    networks:
+      - sloan-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:5000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # 开发模式：独立的前端服务（可选）
+  sloan-frontend-dev:
+    image: node:20-alpine
+    container_name: sloan-frontend-dev
+    working_dir: /app
+    command: npm run dev
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=development
+      - VITE_API_BASE_URL=http://localhost:5000
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    networks:
+      - sloan-network
+    profiles:
+      - dev  # 仅在开发模式启动
+
+networks:
+  sloan-network:
+    driver: bridge
