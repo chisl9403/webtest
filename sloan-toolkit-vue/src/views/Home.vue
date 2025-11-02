@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import InfoPlugin from '@/plugins/info/InfoPlugin.vue'
 import LogAnalyzer from '@/plugins/log-analyzer/LogAnalyzer.vue'
+import FinancePlugin from '@/plugins/finance/FinancePlugin.vue'
 
 const title = ref('sloan的工具集')
 const activeTab = ref('info')
@@ -24,7 +25,10 @@ const activeTab = ref('info')
           <el-tab-pane label="ℹ️ 信息" name="info">
             <InfoPlugin />
           </el-tab-pane>
-          <el-tab-pane label="📊 日志分析" name="log-analyzer">
+          <el-tab-pane label="� 金融" name="finance">
+            <FinancePlugin />
+          </el-tab-pane>
+          <el-tab-pane label="�📊 日志分析" name="log-analyzer">
             <LogAnalyzer />
           </el-tab-pane>
         </el-tabs>

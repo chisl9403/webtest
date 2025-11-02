@@ -1,0 +1,96 @@
+{
+  "autoApprove": {
+    "enabled": true,
+    "rules": [
+      {
+        "name": "配置文件修改",
+        "patterns": [
+          "config.json",
+          "config.local.json",
+          "*.config.js",
+          "*.config.ts",
+          "tsconfig.json",
+          "package.json"
+        ],
+        "autoApprove": true,
+        "description": "自动审批配置文件的修改"
+      },
+      {
+        "name": "样式调整",
+        "patterns": [
+          "*.scss",
+          "*.css",
+          "*.vue (style section)"
+        ],
+        "autoApprove": true,
+        "description": "自动审批样式相关的修改"
+      },
+      {
+        "name": "布局调整",
+        "operations": [
+          "调整间距",
+          "修改宽度",
+          "改变高度",
+          "对齐元素",
+          "调整字体大小",
+          "修改颜色"
+        ],
+        "autoApprove": true,
+        "description": "自动审批布局和视觉调整"
+      },
+      {
+        "name": "新增功能模块",
+        "operations": [
+          "添加新卡片",
+          "新增数据源",
+          "添加API调用",
+          "新增组件"
+        ],
+        "autoApprove": true,
+        "requireConfirmation": false,
+        "description": "自动审批新功能模块的添加"
+      },
+      {
+        "name": "代码重构",
+        "operations": [
+          "提取函数",
+          "重命名变量",
+          "优化代码结构",
+          "添加注释"
+        ],
+        "autoApprove": true,
+        "description": "自动审批代码重构操作"
+      }
+    ],
+    "exceptions": [
+      {
+        "name": "关键逻辑修改",
+        "patterns": [
+          "删除函数",
+          "修改API密钥",
+          "删除数据库",
+          "修改认证逻辑"
+        ],
+        "autoApprove": false,
+        "requireConfirmation": true,
+        "description": "关键操作需要确认"
+      }
+    ]
+  },
+  "codeGeneration": {
+    "autoFormat": true,
+    "addComments": true,
+    "followConventions": true,
+    "preferredStyle": {
+      "quotes": "single",
+      "semicolons": false,
+      "indent": 2,
+      "lineBreak": "lf"
+    }
+  },
+  "notifications": {
+    "verbose": false,
+    "showSuccessMessages": true,
+    "showOnlyErrors": false
+  }
+}

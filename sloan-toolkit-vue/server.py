@@ -30,6 +30,18 @@ from utils.matplotlib_config import setup_matplotlib
 
 # 导入插件
 from plugins.log_analyzer import log_analyzer_bp
+
+# 导入 RSS 代理插件
+try:
+    from plugins.rss_proxy import rss_proxy_bp
+    HAS_RSS_PROXY = True
+    logger.info("✓ RSS代理插件加载成功")
+except Exception as e:
+    HAS_RSS_PROXY = False
+    logger.error(f"✗ RSS代理插件加载失败: {e}")
+    import traceback
+    logger.error(traceback.format_exc())
+    
 # 可以在此处导入更多插件
 # from plugins.weather import weather_bp
 # from plugins.other_plugin import other_plugin_bp
@@ -49,6 +61,12 @@ def create_app():
     
     # 注册蓝图（插件）
     app.register_blueprint(log_analyzer_bp, url_prefix='/api')
+    
+    # 注册 RSS 代理插件（如果可用）
+    if HAS_RSS_PROXY:
+        app.register_blueprint(rss_proxy_bp, url_prefix='/api')
+        logger.info("✓ RSS代理插件已注册")
+    
     # 注册更多插件
     # app.register_blueprint(weather_bp, url_prefix='/api')
     # app.register_blueprint(other_plugin_bp, url_prefix='/api')
@@ -58,14 +76,18 @@ def create_app():
     def health_check():
         """健康检查端点"""
         from flask import jsonify
+        plugins = [
+            {'name': 'log-analyzer', 'endpoint': '/api/analyze'}
+        ]
+        # 动态检查插件是否已注册
+        if 'rss_proxy' in app.blueprints:
+            plugins.append({'name': 'rss-proxy', 'endpoint': '/api/36kr/rss'})
+            
         return jsonify({
             'status': 'ok',
             'message': 'Flask server is running',
             'version': '2.0.0',
-            'plugins': [
-                {'name': 'log-analyzer', 'endpoint': '/api/analyze'},
-                # 在此添加更多插件信息
-            ]
+            'plugins': plugins
         })
     
     # 全局异常处理
