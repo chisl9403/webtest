@@ -22,9 +22,9 @@ dist-ssr
 .env.*.local
 
 # Config files (contains API keys and private info)
-config.json
 config.local.json
-public/config.json
+# config.json should be committed as template
+# public/config.json
 
 # Editor directories and files
 .vscode/*

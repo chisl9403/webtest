@@ -105,7 +105,77 @@ def create_app():
     
     return app
 
+def check_config_files():
+    """检查配置文件并返回优先级最高的配置"""
+    import json
+    
+    config_files = [
+        'config.local.json',  # 优先级最高（本地配置）
+        'config.json',        # 次优先级（通用配置）
+        'config.example.json' # 最低优先级（示例配置）
+    ]
+    
+    logger.info("=" * 60)
+    logger.info("配置文件检查")
+    logger.info("=" * 60)
+    
+    found_configs = []
+    for config_file in config_files:
+        file_path = os.path.join(os.getcwd(), config_file)
+        if os.path.exists(file_path):
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    config_data = json.load(f)
+                    api_key = config_data.get('apiKey', '')
+                    
+                    # 检查是否是占位符
+                    is_placeholder = any(placeholder in api_key.upper() for placeholder in [
+                        'YOUR_', 'OPENWEATHERMAP', 'API_KEY', '请在此处填写'
+                    ])
+                    
+                    status = "⚠️  未配置（占位符）" if is_placeholder else "✅ 已配置"
+                    found_configs.append({
+                        'file': config_file,
+                        'path': file_path,
+                        'exists': True,
+                        'valid': not is_placeholder,
+                        'api_key': api_key[:20] + '...' if len(api_key) > 20 else api_key
+                    })
+                    logger.info(f"{status} - {config_file}")
+                    if not is_placeholder:
+                        logger.info(f"         API Key: {api_key[:8]}...{api_key[-4:]}")
+            except Exception as e:
+                logger.error(f"❌ 读取失败 - {config_file}: {e}")
+                found_configs.append({
+                    'file': config_file,
+                    'path': file_path,
+                    'exists': True,
+                    'valid': False,
+                    'error': str(e)
+                })
+        else:
+            logger.info(f"⊘  不存在 - {config_file}")
+    
+    # 找到第一个有效配置
+    valid_config = next((c for c in found_configs if c.get('valid')), None)
+    
+    if valid_config:
+        logger.info("=" * 60)
+        logger.info(f"✅ 使用配置: {valid_config['file']}")
+        logger.info("=" * 60)
+    else:
+        logger.warning("=" * 60)
+        logger.warning("⚠️  警告: 未找到有效的 API 配置！")
+        logger.warning("请编辑 config.local.json 或 config.json 添加有效的 API Key")
+        logger.warning("获取免费 API Key: https://openweathermap.org/api")
+        logger.warning("=" * 60)
+    
+    return found_configs
+
 if __name__ == '__main__':
+    # 检查配置文件
+    check_config_files()
+    
     # 确保上传文件夹存在
     upload_folder = tempfile.gettempdir()
     os.makedirs(upload_folder, exist_ok=True)

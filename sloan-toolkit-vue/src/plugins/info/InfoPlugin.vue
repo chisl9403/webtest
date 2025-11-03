@@ -159,7 +159,11 @@ const getWeather = async () => {
     return
   }
 
-  if (!apiKey.value || apiKey.value === 'YOUR_API_KEY_HERE' || apiKey.value === 'YOUR_OPENWEATHERMAP_API_KEY_HERE') {
+  if (!apiKey.value || 
+      apiKey.value === 'YOUR_API_KEY_HERE' || 
+      apiKey.value === 'YOUR_OPENWEATHERMAP_API_KEY_HERE' ||
+      apiKey.value.includes('请在此处填写') ||
+      apiKey.value.includes('OpenWeatherMap API Key')) {
     ElMessage.error('请在 config.local.json 中配置有效的 OpenWeatherMap API key')
     return
   }
