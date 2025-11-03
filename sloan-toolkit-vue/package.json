@@ -11,6 +11,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@capacitor/android": "^7.4.4",
+    "@capacitor/cli": "^7.4.4",
+    "@capacitor/core": "^7.4.4",
     "@vueuse/core": "^14.0.0",
     "axios": "^1.13.1",
     "dayjs": "^1.11.19",

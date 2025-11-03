@@ -119,12 +119,12 @@ const addToHistory = (cityName: string) => {
   saveHistory()
 }
 
-// 清空历史
-const clearHistory = () => {
-  searchHistory.value = []
-  saveHistory()
-  ElMessage.success('历史记录已清空')
-}
+// 清空历史 (暂未使用)
+// const clearHistory = () => {
+//   searchHistory.value = []
+//   saveHistory()
+//   ElMessage.success('历史记录已清空')
+// }
 
 // 2.4 天气配置加载
 const loadConfig = async () => {

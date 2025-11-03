@@ -91,24 +91,24 @@ const getChargeStateColor = (state: number): string => {
   return chargeStateMap[state]?.color || '#909399'
 }
 
-// 统计数据
-interface StatsData {
-  total_points: number
-  avg_current: number
-  max_current: number
-  min_current: number
-  avg_temp: number
-  charge_state_counts: {
-    no_charge: number
-    discharge: number
-    precharge: number
-    cc_charge: number
-    cv_charge: number
-    full: number
-    done: number
-    fault: number
-  }
-}
+// 统计数据 (暂未使用)
+// interface StatsData {
+//   total_points: number
+//   avg_current: number
+//   max_current: number
+//   min_current: number
+//   avg_temp: number
+//   charge_state_counts: {
+//     no_charge: number
+//     discharge: number
+//     precharge: number
+//     cc_charge: number
+//     cv_charge: number
+//     full: number
+//     done: number
+//     fault: number
+//   }
+// }
 
 // 文件上传前的验证
 const beforeUpload = (rawFile: UploadRawFile) => {
