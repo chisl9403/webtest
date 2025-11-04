@@ -1,433 +1,517 @@
-# 🛠️ Sloan 的工具集# Sloan 的工具集
+# 🛠️ Sloan Toolkit - 多平台工具集
 
+<div align="center">
 
+[![Vue 3](https://img.shields.io/badge/Vue-3.5-42b883?logo=vue.js)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7.1-646cff?logo=vite)](https://vitejs.dev/)
+[![Capacitor](https://img.shields.io/badge/Capacitor-7.4-119eff?logo=capacitor)](https://capacitorjs.com/)
+[![Android](https://img.shields.io/badge/Android-Ready-3ddc84?logo=android)](https://developer.android.com/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ed?logo=docker)](https://www.docker.com/)
 
-基于 Vue 3 + TypeScript + Vite 构建的现代化插件系统，提供天气查询、股票信息、日志分析等实用工具。基于 Vue 3 + TypeScript + Vite 构建的插件化工具集系统。
+**基于 Vue 3 + Capacitor 构建的现代化跨平台工具集**
 
+支持 Web、Android 平台，提供天气查询、金融数据、日志分析等实用工具
 
+[功能特性](#-功能特性) • [快速开始](#-快速开始) • [Android 应用](#-android-应用) • [文档](#-文档) • [贡献](#-贡献)
 
-[![Vue 3](https://img.shields.io/badge/Vue-3.4-42b883?logo=vue.js)](https://vuejs.org/)## ✨ 功能特性
+</div>
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6?logo=typescript)](https://www.typescriptlang.org/)
+---
 
-[![Vite](https://img.shields.io/badge/Vite-7.1-646cff?logo=vite)](https://vitejs.dev/)- 🌤️ **天气查询** - 支持城市搜索、收藏和历史记录
+## ✨ 功能特性
 
-[![Element Plus](https://img.shields.io/badge/Element_Plus-2.5-409eff)](https://element-plus.org/)- 📊 **日志分析** - PM:INFO 日志文件分析和可视化
+### 📱 跨平台支持
 
-- 🔌 **插件系统** - 模块化插件架构，易于扩展
+- 🌐 **Web 应用** - 支持浏览器访问，响应式设计
+- 📱 **Android 应用** - 原生 Android APK，使用 Capacitor 封装
+- 🐳 **Docker 部署** - 一键容器化部署
+- 🖥️ **局域网访问** - 支持局域网多设备访问
 
-## ✨ 功能特性- 🎨 **现代 UI** - Element Plus 组件库，响应式设计
+### 🧩 插件系统
 
+#### 📡 信息插件
+- 🌤️ **天气查询**
+  - 全球城市实时天气
+  - 中英文城市搜索
+  - 城市收藏（最多10个）
+  - 搜索历史（最近20条）
+  - 详细气象数据（温度、湿度、风速、气压、体感温度）
 
+#### 💰 金融插件
+- 📊 **大盘指数** - 上证、深证、创业板、沪深300实时行情
+- 📈 **K线图表** - 120天历史数据，支持交互缩放
+- 💹 **资金流向** - 主力资金流入流出趋势分析
+- 🔥 **热门股票** - 涨幅榜TOP5，实时更新
+- 📊 **龙虎榜** - 市场热点股票展示
+- 🌟 **期货行情** - TOP5期货合约涨幅排行
 
-### 📡 信息插件## 🚀 快速开始
+#### 📊 日志分析插件
+- 📄 **PM:INFO 日志解析** - 专业的日志文件分析工具
+- 📈 **数据可视化** - 电流、温度、电压多维度图表
+- 📊 **统计分析** - 数据峰值、均值、异常检测
+- 💾 **数据导出** - 支持CSV格式导出
+- 🔍 **交互功能** - 缩放、平移、框选、重置
 
-- 🌤️ **天气查询** - 全球城市天气信息，支持中英文搜索
+### 🎨 技术亮点
 
-  - 快速城市选择### 1. 配置 API 密钥
+- ⚡ **Vue 3 Composition API** - 现代化响应式开发
+- 📦 **Vite 构建** - 极速开发体验
+- 🎯 **TypeScript** - 类型安全
+- 🎨 **Element Plus** - 优雅的UI组件
+- 📊 **ECharts 可视化** - 强大的图表功能
+- 🔌 **模块化插件架构** - 易于扩展
 
-  - 城市收藏功能```bash
+---
 
-  - 搜索历史记录# 复制配置模板
+## 🚀 快速开始
 
-  - 详细天气数据（温度、湿度、风速、气压等）cp config.example.json config.json
+### 🌐 Web 部署
 
+#### 方式一：Docker 部署（推荐）⭐
 
+```bash
+# 克隆项目
+git clone https://github.com/chisl9403/webtest.git
+cd webtest/sloan-toolkit-vue
 
-- 📈 **股票信息** - 实时股市行情展示# 编辑 config.json，添加你的天气 API 密钥
+# 一键部署
+./deploy-docker.sh
+```
 
-  - 🔥 涨幅榜 TOP5（东方财富API）```
+访问：http://localhost:5000
 
-  - 📊 龙虎榜 TOP5（资金净流入）
+#### 方式二：本地开发
 
-  - 自动交易日期计算（排除周末）### 2. 安装依赖
+**前置要求**：Node.js >= 16.x, Python >= 3.9
 
-  - 实时数据刷新```bash
+```bash
+# 1. 克隆项目
+git clone https://github.com/chisl9403/webtest.git
+cd webtest/sloan-toolkit-vue
 
+# 2. 配置 API 密钥
+cp config.example.json config.json
+# 编辑 config.json 添加 OpenWeatherMap API 密钥
+
+# 3. 安装依赖
 npm install
+pip install -r requirements.txt
 
-### 📊 日志分析插件```
-
-- **PM:INFO 日志分析** - 专业的日志文件可视化工具
-
-  - 电流趋势分析（自动单位转换：μA/mA/A）### 3. 启动后端服务器（新终端窗口）
-
-  - 温度监控曲线```bash
-
-  - 电压波动图表python3 server.py
-
-  - 充电状态时序图```
-
-  - 数据统计分析
-
-  - 图表交互功能（缩放、平移、重置、全屏）### 4. 启动前端开发服务器
-
-  - 数据导出（CSV格式）```bash
-
-npm run dev
-
-## 🚀 快速开始```
-
-
-
-### 📋 前置要求访问：http://localhost:3000
-
-
-
-- Node.js >= 16.x### 构建生产版本
-
-- Python >= 3.9```bash
-
-- npm 或 yarnnpm run build
-
-```
-
-### 1️⃣ 克隆项目
-
-### 预览生产版本
-
-```bash```bash
-
-git clone https://github.com/chisl9403/webtest.gitnpm run preview
-
-cd webtest/sloan-toolkit-vue```
-
-```
-
-## 📦 技术栈
-
-### 2️⃣ 配置文件
-
-- **框架**: Vue 3.4+ (Composition API)
-
-```bash- **构建工具**: Vite 7.1+
-
-# 复制配置模板- **UI 组件库**: Element Plus 2.5+
-
-cp config.example.json config.json- **状态管理**: Pinia 2.1+
-
-```- **路由**: Vue Router 4.3+
-
-- **语言**: TypeScript
-
-编辑 `config.json`，添加天气 API 密钥：- **样式**: SCSS
-
-
-
-```json## 📁 项目结构
-
-{
-
-  "apiKey": "your_openweathermap_api_key_here",```
-
-  "plugins": {src/
-
-    "info": {├── components/      # 全局组件
-
-      "enabled": true,├── plugins/        # 插件目录
-
-      "autoLoad": true,│   ├── weather/    # 天气插件
-
-      "defaultCity": "Beijing"│   └── log-analyzer/ # 日志分析插件
-
-    },├── views/          # 页面视图
-
-    "logAnalyzer": {├── router/         # 路由配置
-
-      "enabled": true├── stores/         # 状态管理
-
-    }├── types/          # 类型定义
-
-  }└── assets/         # 静态资源
-
-}
-
-```testlog/            # 测试日志文件夹
-
-└── README.md       # 日志文件说明
-
-> 💡 获取免费 API 密钥：[OpenWeatherMap](https://openweathermap.org/api)```
-
-
-
-### 3️⃣ 安装依赖## 📊 日志分析功能
-
-
-
-```bash### 测试日志文件
-
-# 前端依赖
-
-npm install项目提供了 `testlog/` 文件夹用于存放测试日志文件：
-
-
-
-# 后端依赖- **位置**: 项目根目录下的 `testlog/` 文件夹
-
-pip3 install flask flask-cors matplotlib- **格式**: 仅支持 `.log` 格式文件
-
-```- **大小限制**: 单个文件不超过 30MB
-
-- **用途**: 通过日志分析插件上传并分析日志数据
-
-### 4️⃣ 启动服务
-
-### 日志格式要求
-
-**方式一：手动启动**
-
-日志文件应包含时间戳、电流、温度、电压等数据，格式示例：
-
-```bash
-
-# 终端1：启动后端服务（端口 5002）```
-
-python3 server.py2024-01-01 10:00:00 PM:INFO Current: 1234.56 μA, Temperature: 25.3°C, Voltage: 3.7V
-
-```
-
-# 终端2：启动前端服务（端口 3001）
-
-npm run dev更多详情请查看 `testlog/README.md`
-
-```
-
-## 🔧 配置说明
-
-**方式二：自动化脚本**
-
-在 `public/config.json` 中配置 API 密钥和插件设置。
-
-```bash
-
-# 启动所有服务## 📝 开发新插件
-
+# 4. 启动服务
 ./start-auto.sh
 
-1. 在 `src/plugins/` 下创建插件目录
+# 或手动启动
+# 终端1：python server.py
+# 终端2：npm run dev
+```
 
-# 停止所有服务2. 创建插件组件和类型定义
+访问：http://localhost:3000
 
-./stop-auto.sh3. 在 `index.ts` 中导出插件元数据
+---
 
-```4. 在配置页面启用插件
+## 📱 Android 应用
 
+### ✨ 特性
 
+- ✅ 原生 Android APK
+- ✅ 完整的 Web 功能
+- ✅ Capacitor 7.4 支持
+- ✅ 优化的移动端体验
+- ✅ 4.77 MB 应用大小
 
-### 5️⃣ 访问应用## 📄 License
+### 📥 快速安装
 
+#### 方式一：下载 APK（推荐）
 
+1. 从 [Releases](https://github.com/chisl9403/webtest/releases) 下载最新的 `app-debug.apk`
+2. 传输到 Android 设备
+3. 安装并运行
 
-- 🌐 本地访问：http://localhost:3001
-- 🌐 局域网访问：http://[你的局域网IP]:3001（如：http://192.168.1.100:3001）
+#### 方式二：使用 ADB 安装
 
-> 📖 详细配置说明请查看 [配置指南](./sloan-toolkit-vue/CONFIG_GUIDE.md)
+```bash
+adb install android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+### 🔨 从源码构建
+
+#### 环境准备
+
+**必需工具**：
+- ✅ Node.js 18+
+- ✅ Java JDK 17
+- ✅ Android SDK (API 23+)
+- ✅ Android Studio（可选）
+
+**一键环境检查和安装**：
+
+```bash
+# 检查环境
+.\install-capacitor-environment.ps1
+
+# 如需配置环境变量
+.\setup-env.ps1
+```
+
+#### 构建步骤
+
+```bash
+# 1. 进入项目目录
+cd sloan-toolkit-vue
+
+# 2. 安装依赖
+npm install
+
+# 3. 构建 Vue 项目
+npm run build
+
+# 4. 同步到 Android
+npx cap sync android
+
+# 5. 构建 APK
+cd android
+.\gradlew.bat assembleDebug
+
+# APK 输出位置：
+# android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+#### 在 Android Studio 中开发
+
+```bash
+# 在 Android Studio 中打开
+npx cap open android
+
+# 或使用 VS Code（已配置快捷键）
+# Ctrl+Shift+B: 构建项目
+# Ctrl+Shift+S: 同步到 Android
+# Ctrl+Shift+O: 在 Android Studio 中打开
+```
+
+### 📖 详细文档
+
+- [**Android 开发完整指南**](./ANDROID_CAPACITOR_GUIDE.md) - 详细的开发步骤
+- [**环境配置指南**](./CAPACITOR_ENVIRONMENT_SETUP.md) - 环境安装说明
+- [**VS Code 开发指南**](./CAPACITOR_VSCODE_DEVELOPMENT_GUIDE.md) - IDE 配置
+- [**Kotlin vs Capacitor 对比**](./KOTLIN_VS_CAPACITOR_COMPARISON.md) - 技术选型参考
+- [**快速开始总结**](./CAPACITOR_SETUP_SUMMARY.md) - 快速入门
+
+---
 
 ## 📦 技术栈
 
-### 前端
+### 前端技术
 
 | 技术 | 版本 | 说明 |
 |------|------|------|
-| Vue 3 | 3.4.x | 渐进式 JavaScript 框架 |
-| TypeScript | 5.6.x | JavaScript 的超集 |
-| Vite | 7.1.x | 下一代前端构建工具 |
-| Element Plus | 2.5.x | Vue 3 组件库 |
-| ECharts | 6.0.x | 数据可视化图表库 |
-| Vue Router | 4.2.x | 官方路由管理器 |
-| Pinia | 2.1.x | 状态管理库 |
+| Vue 3 | 3.5.22 | 渐进式 JavaScript 框架 |
+| TypeScript | 5.9.3 | 类型安全的 JavaScript 超集 |
+| Vite | 7.1.7 | 下一代前端构建工具 |
+| Element Plus | 2.11.5 | Vue 3 组件库 |
+| ECharts | 6.0.0 | 数据可视化图表库 |
+| Vue Router | 4.6.3 | 官方路由管理器 |
+| Pinia | 3.0.3 | Vue 状态管理库 |
 
-### 后端
+### 移动端技术
 
 | 技术 | 版本 | 说明 |
 |------|------|------|
-| Flask | 3.0.x | Python Web 框架 |
-| Flask-CORS | 5.0.x | 跨域资源共享 |
-| Matplotlib | 3.8.x | 图表生成库 |
+| Capacitor | 7.4.4 | 跨平台原生运行时 |
+| Android SDK | API 23-35 | Android 开发工具包 |
+| Gradle | 8.11.1 | Android 构建工具 |
+| Java | JDK 17 | Android 开发语言 |
+
+### 后端技术
+
+| 技术 | 版本 | 说明 |
+|------|------|------|
+| Flask | 3.0.0 | Python Web 框架 |
+| Flask-CORS | 5.0.0 | 跨域资源共享 |
+| Matplotlib | 3.8.0 | 图表生成库 |
+
+### 部署技术
+
+| 技术 | 说明 |
+|------|------|
+| Docker | 容器化部署 |
+| Docker Compose | 多容器编排 |
+| Nginx | 反向代理（可选） |
+
+---
 
 ## 📁 项目结构
 
 ```
-sloan-toolkit-vue/
-├── src/
-│   ├── plugins/              # 插件目录
-│   │   ├── info/            # 信息插件（天气+股票）
-│   │   │   ├── InfoPlugin.vue
-│   │   │   ├── index.ts
-│   │   │   └── types/
-│   │   └── log-analyzer/    # 日志分析插件
-│   │       ├── LogAnalyzer.vue
-│   │       └── index.ts
-│   ├── views/               # 页面视图
-│   │   ├── Home.vue
-│   │   └── PluginConfig.vue
-│   ├── router/              # 路由配置
-│   ├── stores/              # 状态管理
-│   └── types/               # 类型定义
-├── backend/                 # 后端服务
-│   ├── plugins/
-│   │   └── log_analyzer/   # 日志分析后端
-│   │       ├── parser.py   # 日志解析器
-│   │       └── visualizer.py
-│   ├── config/             # 配置模块
-│   └── utils/              # 工具函数
-├── server.py               # 后端入口
-├── vite.config.ts          # Vite 配置
-├── config.json             # 运行时配置
-└── README.md              # 项目说明
+sloan-toolkit-vue-android/
+├── sloan-toolkit-vue/          # Vue 3 主项目
+│   ├── src/                    # 前端源码
+│   │   ├── plugins/           # 插件系统
+│   │   │   ├── finance/      # 金融插件
+│   │   │   ├── info/         # 信息插件
+│   │   │   └── log-analyzer/ # 日志分析插件
+│   │   ├── views/            # 页面视图
+│   │   ├── router/           # 路由配置
+│   │   ├── stores/           # Pinia 状态管理
+│   │   └── types/            # TypeScript 类型
+│   ├── backend/               # Flask 后端
+│   │   ├── plugins/          # 后端插件
+│   │   ├── config/           # 配置模块
+│   │   └── utils/            # 工具函数
+│   ├── android/               # Android 项目 ⭐
+│   │   ├── app/              # Android 应用代码
+│   │   ├── gradle/           # Gradle 配置
+│   │   └── build.gradle      # 构建配置
+│   ├── capacitor.config.ts    # Capacitor 配置 ⭐
+│   ├── server.py             # Flask 入口
+│   ├── Dockerfile            # Docker 镜像
+│   ├── docker-compose.yml    # Docker 编排
+│   └── package.json          # Node 依赖
+│
+├── *.md                        # 文档文件
+│   ├── ANDROID_CAPACITOR_GUIDE.md
+│   ├── CAPACITOR_ENVIRONMENT_SETUP.md
+│   ├── CAPACITOR_VSCODE_DEVELOPMENT_GUIDE.md
+│   ├── KOTLIN_VS_CAPACITOR_COMPARISON.md
+│   └── ...
+│
+└── *.ps1, *.sh                # 自动化脚本
+    ├── install-capacitor-environment.ps1
+    ├── setup-env.ps1
+    ├── deploy-docker.sh
+    └── ...
 ```
+
+---
 
 ## 🔧 配置说明
 
-### Vite 配置（局域网访问）
+### API 配置
 
-```typescript
-// vite.config.ts
-export default defineConfig({
-  server: {
-    host: '0.0.0.0',  // 允许局域网访问
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5002',
-        changeOrigin: true
-      }
+在 `config.json` 中配置服务：
+
+```json
+{
+  "apiKey": "your_openweathermap_api_key",
+  "plugins": {
+    "info": {
+      "enabled": true,
+      "autoLoad": true,
+      "defaultCity": "Beijing"
+    },
+    "finance": {
+      "enabled": true,
+      "autoLoad": true
+    },
+    "logAnalyzer": {
+      "enabled": true
     }
   }
-})
-```
-
-### 后端配置
-
-```python
-# server.py
-app.run(
-    host='0.0.0.0',  # 允许局域网访问
-    port=5002,
-    debug=False
-)
-```
-
-## 🎯 核心功能详解
-
-### 信息插件
-
-#### 天气查询
-- **API**: OpenWeatherMap
-- **支持功能**: 
-  - 中英文城市名搜索
-  - 实时天气数据
-  - 收藏城市（最多10个）
-  - 搜索历史（最近20条）
-  - 体感温度、湿度、风速、气压
-
-#### 股票信息
-- **热门股票**: 今日涨幅榜 TOP5
-  - 股票代码、名称
-  - 最新价、涨跌幅
-  - 换手率
-  
-- **龙虎榜**: 资金净流入 TOP5
-  - 上一交易日数据
-  - 收盘价、涨跌幅
-  - 资金净流入（亿元）
-  - 自动计算交易日（排除周末）
-
-### 日志分析插件
-
-#### 支持格式
-1. **Key-Value 格式**: `BatteryLevel=100%, Voltage=...`
-2. **数值格式**: `100 0 0 0 4080 26 0 1`
-
-#### 分析功能
-- **统计信息**:
-  - 数据点总数
-  - 电流平均值/最大值/最小值
-  - 平均温度
-  - 充电状态分布
-
-- **可视化图表**:
-  - 电流趋势图（自动单位转换）
-  - 温度监控曲线
-  - 电压波动图
-  - 充电状态时序图
-
-- **交互功能**:
-  - 鼠标滚轮缩放
-  - 拖拽平移
-  - 框选缩放
-  - 重置视图
-  - 全屏展示
-
-## 🐛 常见问题
-
-### 1. 局域网无法访问？
-
-**原因**: 服务器未绑定到 0.0.0.0
-
-**解决方案**:
-```typescript
-// vite.config.ts
-server: {
-  host: '0.0.0.0',  // ← 确保配置此项
-  port: 3000
 }
 ```
 
-### 2. 日志分析返回 "load failed"？
+### Android 配置
 
-**原因**: 后端服务未启动或API路径错误
+在 `capacitor.config.ts` 中配置应用：
 
-**解决方案**:
-1. 确认后端服务运行: `ps aux | grep python`
-2. 检查API路径使用相对路径 `/api`
-3. 查看浏览器控制台错误信息
-
-### 3. 龙虎榜显示示例数据？
-
-**原因**: API返回数据为空（可能是非交易日或API限制）
-
-**说明**: 系统会自动降级到模拟数据，保证用户体验
-
-### 4. 股票数据不刷新？
-
-**解决方案**: 点击"刷新"按钮或刷新浏览器页面
-
-## 📝 开发指南
-
-### 添加新插件
-
-1. 在 `src/plugins/` 创建插件文件夹
-2. 创建组件文件和配置文件
-3. 在 `src/views/Home.vue` 注册插件
-4. 在 `src/views/PluginConfig.vue` 添加配置项
-
-### 调试技巧
-
-```bash
-# 查看前端日志
-npm run dev
-
-# 查看后端日志
-python3 server.py
-
-# 查看网络请求
-# 浏览器 DevTools → Network 标签
+```typescript
+const config: CapacitorConfig = {
+  appId: 'com.sloan.toolkit',
+  appName: 'Sloan Toolkit',
+  webDir: 'dist'
+};
 ```
 
-### 构建部署
+### Gradle 镜像配置
+
+已配置国内镜像加速（腾讯云 + 阿里云）：
+
+```gradle
+// android/build.gradle
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/public/' }
+    maven { url 'https://maven.aliyun.com/repository/google/' }
+    google()
+    mavenCentral()
+}
+```
+
+---
+
+## 📚 文档
+
+### 核心文档
+
+- [项目 Android 概览](./PROJECT_ANDROID_OVERVIEW.md) - 项目整体介绍
+- [Android 方案对比](./ANDROID_SOLUTIONS_COMPARISON.md) - 多种方案对比分析
+
+### Android 开发
+
+- [Capacitor Android 完整指南](./ANDROID_CAPACITOR_GUIDE.md) ⭐ 推荐
+- [环境配置详细说明](./CAPACITOR_ENVIRONMENT_SETUP.md)
+- [快速开始总结](./CAPACITOR_SETUP_SUMMARY.md)
+- [VS Code 开发指南](./CAPACITOR_VSCODE_DEVELOPMENT_GUIDE.md)
+
+### 技术对比
+
+- [Kotlin vs Capacitor 全面对比](./KOTLIN_VS_CAPACITOR_COMPARISON.md)
+- [效果展示对比](./KOTLIN_CAPACITOR_EFFECTS_COMPARISON.md)
+
+### Web 开发
+
+- [Docker 部署指南](./sloan-toolkit-vue/DOCKER_GUIDE.md)
+- [配置指南](./sloan-toolkit-vue/CONFIG_GUIDE.md)
+- [部署总结](./sloan-toolkit-vue/DEPLOYMENT_SUMMARY.md)
+
+---
+
+## 🛠️ 开发指南
+
+### Web 开发
 
 ```bash
+# 启动开发服务器
+npm run dev
+
 # 构建生产版本
 npm run build
 
-# 输出目录: dist/
-# 后端服务保持运行
+# 代码检查
+npm run lint
+
+# 格式化代码
+npm run format
 ```
 
-## 🤝 贡献指南
+### Android 开发
+
+```bash
+# 构建并同步
+npm run build
+npx cap sync android
+
+# 打开 Android Studio
+npx cap open android
+
+# 构建 Debug APK
+cd android
+.\gradlew.bat assembleDebug
+
+# 构建 Release APK（需要签名）
+.\gradlew.bat assembleRelease
+```
+
+### VS Code 快捷键
+
+- `Ctrl+Shift+B`: 构建 Vue 项目
+- `Ctrl+Shift+S`: 同步到 Android
+- `Ctrl+Shift+O`: 在 Android Studio 中打开
+
+---
+
+## 🐛 常见问题
+
+### Android 开发
+
+**Q: Java 版本不匹配？**
+```bash
+# 确保使用 JDK 17
+java -version
+
+# 配置 JAVA_HOME
+.\setup-env.ps1
+```
+
+**Q: Android SDK 未找到？**
+```bash
+# 运行环境检查
+.\install-capacitor-environment.ps1
+
+# 手动设置 ANDROID_HOME
+# Windows: C:\Users\你的用户名\AppData\Local\Android\Sdk
+```
+
+**Q: Gradle 下载慢？**
+> 已配置国内镜像（腾讯云 + 阿里云），自动加速
+
+**Q: 构建失败？**
+```bash
+# 清理并重新构建
+cd android
+.\gradlew.bat clean
+.\gradlew.bat assembleDebug
+```
+
+### Web 开发
+
+**Q: npm install 失败？**
+```bash
+# 清理缓存
+npm cache clean --force
+rm -rf node_modules
+npm install
+```
+
+**Q: Docker 端口冲突？**
+```yaml
+# 修改 docker-compose.yml
+ports:
+  - "8080:5000"  # 改用其他端口
+```
+
+---
+
+## 📝 更新日志
+
+### v3.0.0 (2025-11-03) 🎉
+
+**🚀 重大更新：Android 平台支持**
+
+- ✨ **新增 Android 应用支持**
+  - Capacitor 7.4 集成
+  - 原生 Android APK 构建
+  - 完整的移动端优化
+  - 4.77 MB 应用体积
+
+- 📚 **完善文档体系**
+  - 8 个详细开发文档
+  - Android 开发完整指南
+  - 环境配置自动化脚本
+  - VS Code 开发环境配置
+
+- 🛠️ **开发工具增强**
+  - 5 个自动化脚本
+  - 环境检查和配置工具
+  - VS Code 任务和快捷键
+  - Gradle 国内镜像加速
+
+- 🔧 **技术优化**
+  - Java 17 兼容性修复
+  - Android SDK 配置优化
+  - 构建性能提升
+  - 代码质量改进
+
+### v2.0.0 (2025-11-02)
+
+- ✨ 新增完整的金融插件功能
+- 🐳 新增 Docker 容器化支持
+- 📝 新增详细的部署文档
+- 🚀 新增一键部署脚本
+
+### v1.0.0 (2025-10-01)
+
+- 🎉 初始版本发布
+- ✨ 天气查询功能
+- ✨ 日志分析功能
+- ✨ 插件系统框架
+
+---
+
+## 🤝 贡献
 
 欢迎提交 Issue 和 Pull Request！
+
+### 贡献指南
 
 1. Fork 本仓库
 2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
@@ -435,31 +519,74 @@ npm run build
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 开启 Pull Request
 
+### 开发分支
+
+- `main`: 主分支，稳定版本
+- `Android`: Android 开发分支 ⭐
+- `feature/*`: 功能开发分支
+- `bugfix/*`: Bug 修复分支
+
+---
+
 ## 📄 许可证
 
 本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
 
-## 🔗 相关链接
+---
 
-- [Vue 3 文档](https://vuejs.org/)
-- [Element Plus](https://element-plus.org/)
-- [ECharts](https://echarts.apache.org/)
-- [OpenWeatherMap API](https://openweathermap.org/api)
-- [东方财富 API](https://www.eastmoney.com/)
+## 👨‍💻 作者
 
-## 📮 联系方式
+**Sloan Chi**
 
-- 项目地址: [https://github.com/chisl9403/webtest](https://github.com/chisl9403/webtest)
-- 作者: Sloan
+- GitHub: [@chisl9403](https://github.com/chisl9403)
+- Repository: [webtest](https://github.com/chisl9403/webtest)
+
+---
 
 ## 🙏 致谢
 
 感谢以下开源项目：
-- Vue.js 团队
-- Element Plus 团队
-- ECharts 团队
-- Flask 社区
+
+- [Vue.js](https://vuejs.org/) - 渐进式 JavaScript 框架
+- [Capacitor](https://capacitorjs.com/) - 跨平台原生运行时
+- [Element Plus](https://element-plus.org/) - Vue 3 组件库
+- [ECharts](https://echarts.apache.org/) - 数据可视化库
+- [Flask](https://flask.palletsprojects.com/) - Python Web 框架
+- [TypeScript](https://www.typescriptlang.org/) - JavaScript 的超集
+- [Vite](https://vitejs.dev/) - 下一代构建工具
+- [Docker](https://www.docker.com/) - 容器化平台
 
 ---
 
-⭐ 如果这个项目对你有帮助，请给个 Star！
+## 🔗 相关链接
+
+### 官方文档
+
+- [Vue 3 文档](https://vuejs.org/)
+- [Capacitor 文档](https://capacitorjs.com/docs)
+- [Android 开发文档](https://developer.android.com/)
+- [Element Plus 文档](https://element-plus.org/)
+- [ECharts 文档](https://echarts.apache.org/)
+
+### API 服务
+
+- [OpenWeatherMap API](https://openweathermap.org/api) - 天气数据
+- [东方财富 API](https://www.eastmoney.com/) - 金融数据
+
+### 开发工具
+
+- [VS Code](https://code.visualstudio.com/) - 推荐编辑器
+- [Android Studio](https://developer.android.com/studio) - Android 开发
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) - 容器管理
+
+---
+
+<div align="center">
+
+**⭐ 如果这个项目对你有帮助，请给个 Star！**
+
+**📱 支持 Web + Android 双平台**
+
+[返回顶部](#️-sloan-toolkit---多平台工具集)
+
+</div>

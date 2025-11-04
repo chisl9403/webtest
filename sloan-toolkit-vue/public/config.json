@@ -1,0 +1,27 @@
+{
+    "apiKey": "YOUR_OPENWEATHERMAP_API_KEY_HERE",
+    "network": {
+        "ipv4": {
+            "host": "0.0.0.0",
+            "lan": "YOUR_LAN_IP_HERE"
+        },
+        "ipv6": {
+            "host": "::",
+            "external": "YOUR_IPV6_ADDRESS_HERE"
+        }
+    },
+    "plugins": {
+        "info": {
+            "enabled": true,
+            "autoLoad": true,
+            "defaultCity": "Beijing"
+        },
+        "logAnalyzer": {
+            "enabled": true
+        }
+    },
+    "settings": {
+        "theme": "light",
+        "language": "zh-CN"
+    }
+}

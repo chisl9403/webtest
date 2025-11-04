@@ -13,6 +13,11 @@ const router = createRouter({
       name: 'PluginConfig',
       component: () => import('@/views/PluginConfig.vue')
     }
+    // {
+    //   path: '/motion',
+    //   name: 'MotionDemo',
+    //   component: () => import('@/components/MotionDemo.vue')
+    // }
   ]
 })
 

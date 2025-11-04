@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import InfoPlugin from '@/plugins/info/InfoPlugin.vue'
-import LogAnalyzer from '@/plugins/log-analyzer/LogAnalyzer.vue'
+// import LogAnalyzer from '@/plugins/log-analyzer/LogAnalyzer.vue'
 import FinancePlugin from '@/plugins/finance/FinancePlugin.vue'
 
 const title = ref('sloan的工具集')
@@ -14,9 +14,11 @@ const activeTab = ref('info')
       <el-header>
         <div class="header-content">
           <h1>{{ title }}</h1>
-          <el-button type="primary" @click="$router.push('/config')">
-            ⚙️ 插件配置
-          </el-button>
+          <div class="header-buttons">
+            <el-button type="primary" @click="$router.push('/config')">
+              ⚙️ 插件配置
+            </el-button>
+          </div>
         </div>
       </el-header>
       <el-main>
@@ -25,12 +27,12 @@ const activeTab = ref('info')
           <el-tab-pane label="ℹ️ 信息" name="info">
             <InfoPlugin />
           </el-tab-pane>
-          <el-tab-pane label="� 金融" name="finance">
+          <el-tab-pane label="💰 金融" name="finance">
             <FinancePlugin />
           </el-tab-pane>
-          <el-tab-pane label="�📊 日志分析" name="log-analyzer">
+          <!-- <el-tab-pane label="📊 日志分析" name="log-analyzer">
             <LogAnalyzer />
-          </el-tab-pane>
+          </el-tab-pane> -->
         </el-tabs>
       </el-main>
     </el-container>
@@ -56,6 +58,11 @@ const activeTab = ref('info')
         margin: 0;
         font-size: 24px;
         font-weight: 600;
+      }
+
+      .header-buttons {
+        display: flex;
+        gap: 10px;
       }
     }
   }

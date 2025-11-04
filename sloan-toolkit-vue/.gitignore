@@ -23,7 +23,10 @@ dist-ssr
 
 # Config files (contains API keys and private info)
 config.local.json
-# config.json should be committed as template
+public/config.local.json
+# 注意: config.json 和 public/config.json 包含 API Key
+# 如果已配置真实 API Key，请取消以下注释以避免泄露
+# config.json
 # public/config.json
 
 # Editor directories and files
