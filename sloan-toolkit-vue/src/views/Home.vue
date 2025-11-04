@@ -15,6 +15,9 @@ const activeTab = ref('info')
         <div class="header-content">
           <h1>{{ title }}</h1>
           <div class="header-buttons">
+            <el-button type="success" @click="$router.push('/browser')">
+              🌐 浏览器
+            </el-button>
             <el-button type="primary" @click="$router.push('/config')">
               ⚙️ 插件配置
             </el-button>

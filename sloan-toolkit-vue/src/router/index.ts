@@ -12,6 +12,11 @@ const router = createRouter({
       path: '/config',
       name: 'PluginConfig',
       component: () => import('@/views/PluginConfig.vue')
+    },
+    {
+      path: '/browser',
+      name: 'InAppBrowser',
+      component: () => import('@/components/InAppBrowser.vue')
     }
     // {
     //   path: '/motion',

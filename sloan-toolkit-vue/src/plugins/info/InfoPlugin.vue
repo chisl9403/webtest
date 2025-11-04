@@ -22,6 +22,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Search, Star, StarFilled, Refresh } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 
 // ============================================
 // 1. 配置与常量
@@ -45,6 +46,9 @@ const CITY_MAP: Record<string, string> = {
   '青岛': 'Qingdao',
   '大连': 'Dalian'
 }
+
+// 路由实例
+const router = useRouter()
 
 // ============================================
 // 2. 天气模块
@@ -392,9 +396,19 @@ const formatNewsTime = (timestamp: number): string => {
   return `${date.getMonth() + 1}月${date.getDate()}日`
 }
 
-// 4.5 打开资讯链接
-const openNewsUrl = (url: string) => {
-  window.open(url, '_blank')
+// 4.5 打开资讯链接（使用内置浏览器 WebView）
+const openNewsUrl = async (url: string) => {
+  try {
+    // 统一使用应用内 WebView 浏览器
+    // 跳转到内置浏览器页面，传递 URL 参数
+    router.push({
+      path: '/browser',
+      query: { url: encodeURIComponent(url) }
+    })
+  } catch (error) {
+    console.error('打开链接失败:', error)
+    ElMessage.error('无法打开链接')
+  }
 }
 
 // 3.1 资讯数据类型定义
